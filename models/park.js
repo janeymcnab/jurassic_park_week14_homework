@@ -26,8 +26,8 @@ Park.prototype.popularDinosaur = function (){
 };
 
 Park.prototype.findDinosaurSpecies = function(species){
-    const speciesArray = this.dinosaurArray.filter(function(el){
-        return el.species == species;
+    const speciesArray = this.dinosaurArray.filter(function(dinosaur){
+        return dinosaur.species === species;
     })
     return speciesArray;
 };
@@ -46,6 +46,30 @@ Park.prototype.totalVisitsPerYear = function(){
 
 Park.prototype.yearlyTicketSales = function(){
     return this.totalVisitsPerYear() * this.ticket;
+};
+
+
+// EXTENSIONS
+
+Park.prototype.removeBySpecies = function(species){
+    const speciesArray = this.dinosaurArray.filter(function(dinosaur){
+        return dinosaur.species !== species;
+    })
+   return speciesArray;
+};
+
+
+Park.prototype.dietTypeObj = function(){
+    const dietTypeObj = {};
+
+    for (dinosaur of this.dinosaurArray){
+        if (dietTypeObj[dinosaur.diet]){
+            dietTypeObj[dinosaur.diet] += 1;
+        } else{
+            dietTypeObj[dinosaur.diet] = 1;
+        }
+    }
+return dietTypeObj;
 };
 
 

@@ -14,6 +14,7 @@ describe('Park', function(){
         dino_1 = new Dinosaur('T-Rex', 'Carnivore', 300)
         dino_2 = new Dinosaur('Stegasarus', 'Herbivore', 250)
         dino_3 = new Dinosaur('Pterodactyl', 'Carnivore', 100)
+        dino_4 = new Dinosaur('Velociraptor', 'Omnivore', 100)
     });
 
     it('should have a name', function(){
@@ -88,4 +89,26 @@ describe('Park', function(){
         const expected = 4745000;
         assert.strictEqual(actual, expected)
     });
+
+//EXTENSIONS
+    it('should be able to remove dinosaurs of species', function(){
+        park.addDinosaur(dino_1);
+        park.addDinosaur(dino_2);
+        park.addDinosaur(dino_2);
+        park.addDinosaur(dino_3); 
+        park.addDinosaur(dino_4);
+        const actual = park.removeBySpecies(dino_2.species);
+        const expected = [dino_1, dino_3, dino_4];
+        assert.deepStrictEqual(actual, expected);
+    });
+
+    it('should return diet type object', function(){
+        park.addDinosaur(dino_1);
+        park.addDinosaur(dino_2);
+        park.addDinosaur(dino_3); 
+        park.addDinosaur(dino_4);
+        const actual = park.dietTypeObj();
+        const expected = {'Carnivore':2, 'Herbivore':1, 'Omnivore':1}
+        assert.deepStrictEqual(actual, expected)
+    })
 });
